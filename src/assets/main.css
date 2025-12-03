@@ -1,0 +1,341 @@
+/* 1) Import fonts (optional - include in your HTML head or via @import) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap");
+
+:root {
+  /* Color tokens (dark-first) */
+  --nf-bg: #041426; /* page background (very dark navy) */
+  --nf-surface: #0b2a45; /* card backgrounds */
+  --nf-surface-2: #0f3559; /* elevated card */
+  --nf-primary: #ffbe2e; /* golden accent */
+  --nf-primary-600: #e6a92a;
+  --nf-accent-muted: #f7e5b2;
+  --nf-text: #ffffff;
+  --nf-text-muted: #bfd3e6;
+  --nf-muted-2: #7ea7c9;
+  --nf-danger: #ff5c5c;
+  --nf-glass: rgba(255, 255, 255, 0.04);
+
+  /* Shadows */
+  --nf-shadow-1: 0 6px 18px rgba(2, 12, 30, 0.6);
+  --nf-shadow-2: 0 10px 30px rgba(2, 12, 30, 0.7);
+
+  /* Spacing & sizing */
+  --nf-radius-sm: 6px;
+  --nf-radius: 12px;
+  --nf-radius-lg: 20px;
+  --nf-gap: 16px;
+  --nf-gap-xs: 8px;
+
+  /* Type scale */
+  --nf-font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  --nf-h1: 28px;
+  --nf-h2: 20px;
+  --nf-body: 15px;
+  --nf-caption: 13px;
+
+  /* Motion */
+  --nf-ease: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --nf-transition: 180ms var(--nf-ease);
+}
+
+/* Light mode (optional) */
+:root.light {
+  --nf-bg: #f6f8fb;
+  --nf-surface: #ffffff;
+  --nf-surface-2: #f1f5f9;
+  --nf-primary: #0b5fff; /* use a cooler accent in light mode if you prefer */
+  --nf-text: #061223;
+  --nf-text-muted: #42566a;
+  --nf-glass: rgba(6, 18, 35, 0.03);
+  --nf-shadow-1: 0 6px 18px rgba(6, 18, 35, 0.06);
+  --nf-shadow-2: 0 10px 30px rgba(6, 18, 35, 0.08);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --nf-transition: 1ms linear;
+  }
+}
+
+/* 2) Base reset */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--nf-font-main);
+  font-size: var(--nf-body);
+  color: var(--nf-text);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, transparent 50%),
+    var(--nf-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  padding: 24px;
+}
+
+/* Utility helpers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.row {
+  display: flex;
+  gap: var(--nf-gap);
+  align-items: center;
+}
+.col {
+  flex: 1;
+}
+
+/* 3) Header / nav */
+.nf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nf-gap);
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: var(--nf-radius);
+  box-shadow: var(--nf-shadow-1);
+  backdrop-filter: blur(6px);
+}
+.nf-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+.nf-logo {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 190, 46, 0.14),
+      transparent 22%
+    ),
+    linear-gradient(135deg, var(--nf-surface), var(--nf-surface-2));
+  border-radius: 10px;
+  box-shadow: var(--nf-shadow-1);
+}
+
+/* 4) Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--nf-transition), box-shadow var(--nf-transition),
+    opacity var(--nf-transition);
+  user-select: none;
+  text-decoration: none;
+  border: none;
+}
+.button:active {
+  transform: translateY(1px);
+}
+.button-primary {
+  background: linear-gradient(180deg, var(--nf-primary), var(--nf-primary-600));
+  color: #091821;
+  box-shadow: 0 8px 28px rgba(255, 190, 46, 0.12), 0 2px 6px rgba(2, 8, 20, 0.5);
+}
+.button-ghost {
+  background: transparent;
+  color: var(--nf-text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+}
+
+/* 5) Search */
+.nf-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: var(--nf-glass);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  width: 100%;
+}
+.nf-search input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--nf-text);
+  font-size: 15px;
+  flex: 1;
+}
+
+/* 6) Movie card */
+.nf-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: var(--nf-radius);
+  overflow: hidden;
+  color: var(--nf-text);
+  box-shadow: var(--nf-shadow-2);
+  transition: transform var(--nf-transition), box-shadow var(--nf-transition);
+  min-width: 180px;
+}
+.nf-card:hover {
+  transform: translateY(-6px);
+}
+.nf-card .thumbnail {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(180deg, #031827, #082d45);
+}
+.nf-card .meta {
+  padding: 12px;
+}
+.nf-card .title {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 6px 0;
+  color: var(--nf-text);
+}
+.nf-card .sub {
+  font-size: 13px;
+  color: var(--nf-text-muted);
+  margin: 0;
+}
+
+/* 7) Badge / label */
+.nf-badge {
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255, 190, 46, 0.12);
+  color: var(--nf-primary);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* 8) Modal (player) */
+.nf-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 12, 0.7);
+  padding: 24px;
+}
+.nf-modal.open {
+  display: flex;
+}
+.nf-modal .sheet {
+  width: min(1100px, 96%);
+  background: linear-gradient(180deg, #061523, #03151f);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--nf-shadow-2);
+}
+
+/* 9) Tiny icon button */
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  background: var(--nf-glass);
+  transition: transform var(--nf-transition);
+}
+.icon-btn:active {
+  transform: scale(0.98);
+}
+
+/* 10) Accessibility helpers */
+.high-contrast {
+  color: var(--nf-text);
+  background: rgba(0, 0, 0, 0.32);
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 11) Responsive grid for catalog */
+.nf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+/* 12) Micro interactions */
+.nf-fade-in {
+  animation: nfFade 0.36s var(--nf-ease) both;
+}
+@keyframes nfFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 13) Utilities */
+.text-muted {
+  color: var(--nf-text-muted);
+  font-size: 13px;
+}
+.small {
+  font-size: 13px;
+}
+
+/* 14) Example accent underline (for navigation) */
+.nf-navlink {
+  color: var(--nf-text);
+  font-weight: 600;
+  position: relative;
+  padding: 8px 6px;
+  text-decoration: none;
+}
+.nf-navlink::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 4px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nf-primary), var(--nf-primary-600));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--nf-transition);
+}
+.nf-navlink.active::after {
+  transform: scaleX(1);
+}
+
+/* End of nightflex.css */
