@@ -36,7 +36,7 @@ onMounted(() => {
         playsinline
         preload="metadata"
       >
-        <source src="../assets/SB19 'PAGTATAG!' Trailer.mp4" type="video/mp4" />
+        <source src="../assets/SB19_Trailer.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
