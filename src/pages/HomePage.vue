@@ -15,10 +15,13 @@ const toggleVideoMute = () => {
 onMounted(() => {
   const video = document.querySelector(".hero-video");
   if (video) {
+    const playPromise = video.play();
     // Try to autoplay
-    video.play().catch((error) => {
-      console.log("Video autoplay failed:", error);
-    });
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.log("Video autoplay failed:", error);
+      });
+    }
   }
 });
 </script>
