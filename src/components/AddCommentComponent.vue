@@ -32,7 +32,7 @@ async function handleSubmit(e) {
   error.value = "";
 
   try {
-    const res = await api.post(`/movies/${props.movieId}/comments`, {
+    const res = await api.patch(`/movies/addComment/${props.movieId}`, {
       comment: comment.value.trim(),
     });
 
